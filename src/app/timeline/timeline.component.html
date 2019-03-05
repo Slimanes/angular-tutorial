@@ -1,3 +1,4 @@
+<!--
 <div>
   <label style="font-weight: bold">James Braddock</label>
   <pre>{{tweets[0].created_at|date:'dd/MM/yyyy'}}</pre>
@@ -15,4 +16,28 @@
   <pre>Wed Apr 05 12:30:12 +0000 2017</pre>
   <strong>La pulga est un extraterrestre</strong>
 </div>
+-->
 
+
+  <div *ngFor="let tweet of tweets">
+
+    <div>
+      <br>
+      <label style="font-weight: bold">{{tweet.user}}</label>
+      <br>
+      <pre>{{tweet.created_at|timeAgo}}</pre>
+      <pre #nbLike><i (click)="onLike(like,tweet,nbLike)" #like class="far fa-heart" (mouseenter)="onHover(like)"></i> {{tweet.compteur}}</pre>
+      <pre #dislike><i (click)="onDislike(dislike,tweet,nbLike)" #dislike class="fas fa-heart-broken" (mouseenter)="onHover(dislike)"></i> {{tweet.compteurDislike}}</pre>
+      <strong> {{tweet.text}}</strong>
+      <br>
+      </div>
+  </div>
+
+<div>
+  <br>
+  <label style="font-weight: bold">Commentaires</label>
+  <br>
+  <textarea #commentairesInput rows="4" cols="50"></textarea>
+  <br>
+<button (click)="onSave(commentairesInput.value)" style="border-radius: 5px; background-color: #1b95e0; color:white;">Tweeter</button>
+</div>
