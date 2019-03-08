@@ -1,0 +1,15 @@
+<div>
+    <br>
+    <label style="font-weight: bold">Commentaires</label>
+    <br>
+    <textarea #commentairesInput rows="4" cols="50"></textarea>
+    <br>
+    <button [disabled]="!user.name" (click)="addTweet(commentairesInput.value)" style="border-radius: 5px; background-color: #1b95e0; color:white;">Tweeter</button>
+
+</div>
+
+
+<a routerLink="/timeline">
+    <i class="fas fa-arrow-circle left"></i>
+    <span>Retour</span>
+</a>

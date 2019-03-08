@@ -1,0 +1,10 @@
+<div>
+  <br>
+  <label style="font-weight: bold">{{tweet.user}}</label>
+  <br>
+  <pre>{{tweet.created_at|timeAgo}}</pre>
+  <pre #nbLike><i (click)="onLike(like,tweet,nbLike)" #like class="far fa-heart" (mouseenter)="onHover(like)"></i> {{tweet.compteur}}</pre>
+  <pre #dislike><i (click)="onDislike(dislike,tweet,nbLike)" #dislike class="fas fa-heart-broken" (mouseenter)="onHover(dislike)"></i> {{tweet.compteurDislike}}</pre>
+  <strong> {{tweet.text}}</strong>
+  <br>
+</div>

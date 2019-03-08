@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import {User} from '../user';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-user-box',
@@ -9,9 +10,15 @@ import {User} from '../user';
 export class UserBoxComponent implements OnInit {
 
   @Input() user: User;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.user.subscribe(user =>{
+      this.user = user;
+    });
+  }
+  handleUserChange(){
+    this.userService.setUser(this.user);
   }
 
 }

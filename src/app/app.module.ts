@@ -10,6 +10,9 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { TimelineComponent } from './timeline/timeline.component';
 import { UserBoxComponent } from './user-box/user-box.component';
 import { UserComponent } from './user/user.component';
+import { TweetDetailComponent } from './tweet-detail/tweet-detail.component';
+import { TweetComponent } from './tweet/tweet.component';
+import { CreateTweetComponent } from './create-tweet/create-tweet.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { UserComponent } from './user/user.component';
     TimeAgoPipe,
     UserBoxComponent,
     UserComponent,
+    TweetDetailComponent,
+    TweetComponent,
+    CreateTweetComponent,
 
   ],
   imports: [

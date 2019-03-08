@@ -22,28 +22,13 @@
 <div *ngIf="name"><span>Bienvenue,{{name | uppercase}}</span></div>
 <div *ngIf="!name"><span>Veuillez entrer votre nom</span></div>
 <input [(ngModel)]="name" required><p>{{name}}</p> -->
-
+<a routerLink="/create-tweet/" ><i class="fas fa-plus"></i></a>
 <app-user-box [user]="user" ></app-user-box>
 
-  <div *ngFor="let tweet of tweets">
+  <div *ngFor="let tweet of tweets" class="tweet-container" (click)="goToDetail(tweet.id)">
 
-    <div>
-      <br>
-      <label style="font-weight: bold">{{tweet.user}}</label>
-      <br>
-      <pre>{{tweet.created_at|timeAgo}}</pre>
-      <pre #nbLike><i (click)="onLike(like,tweet,nbLike)" #like class="far fa-heart" (mouseenter)="onHover(like)"></i> {{tweet.compteur}}</pre>
-      <pre #dislike><i (click)="onDislike(dislike,tweet,nbLike)" #dislike class="fas fa-heart-broken" (mouseenter)="onHover(dislike)"></i> {{tweet.compteurDislike}}</pre>
-      <strong> {{tweet.text}}</strong>
-      <br>
-      </div>
+    <app-tweet [tweet]="tweet"></app-tweet>
+    <a routerLink="/detail/{{tweet.id}}">Détail</a>
+
   </div>
 
-<div>
-  <br>
-  <label style="font-weight: bold">Commentaires</label>
-  <br>
-  <textarea #commentairesInput rows="4" cols="50"></textarea>
-  <br>
-<button [disabled]="!user.name" (click)="onSave(commentairesInput.value)" style="border-radius: 5px; background-color: #1b95e0; color:white;">Tweeter</button>
-</div>

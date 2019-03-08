@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Tweet} from "./tweet";
+import {Tweet} from './tweet';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,21 @@ export class TweetService {
     getTweets(){
         return this.tweets;
     }
+    getTweetById(id:number){
+        return this.tweets.find(tweet => tweet.id === id);
+    }
+
+    createTweet(text : string,userName:string){
+        const tweet: Tweet = {
+            created_at: new Date().toDateString(),
+            id:this.tweets.length,
+            text,
+            user:userName,
+            compteur:0,
+            compteurDislike:0
+        };
+        this.tweets.push(tweet);
+    }
+
 }
 
