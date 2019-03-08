@@ -1,41 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Tweet} from '../tweet';
+import {UserBoxComponent} from '../user-box/user-box.component';
+import {User} from '../user';
+import {TweetService} from "../tweet.service";
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.less']
 })
-export class TimelineComponent implements OnInit {
 
-    tweets: Tweet[] = [
-        {
-            created_at: 'Wed Apr 05 12:30:12 +0000 2017',
-            id: 1,
-            text: 'Je mets les pieds où je veux, Little John… et c\'est souvent dans la gueule.',
-            user: 'James Braddock',
-            compteur:0,
-            compteurDislike:0
-        },
-        {
-            created_at: 'Thu Apr 06 15:24:15 +0000 2017',
-            id: 2,
-            text: 'Qui a deux pouces et qui s\'en fout ? Bob Kelso !',
-            user: 'Bob kelso',
-            compteur:0,
-            compteurDislike:0
-        },
-    ];
+
+export class TimelineComponent implements OnInit {
+    @ViewChild(UserBoxComponent)
+        user:User = {name:'sly'};
+    name: string = '';
+    tweets:Tweet[];
+
+    constructor(private tweetsService: TweetService){}
+
 
   constructor() { }
 
   ngOnInit() {
+        this.getTweets();
+  }
+  addTweet(text: string){}
+
+  getTweets():void{
+      this.tweets = this.tweetsService.getTweets()
   }
   onSave(commentaires: HTMLInputElement){
     //alert('Commentaires ' + document.getElementById('commentaires').value);
   //    alert( commentaires);
 
-      this.tweets.push({ created_at: new Date() , id:commentaires.length+1 , text:commentaires , user:'Slimane',compteur:0});
+      this.tweets.push({ created_at: new Date() , id:commentaires.length+1 , text:commentaires , user:this.user.name ,compteur:0});
   }
   onLike(like:HTMLInputElement,tweet:Tweet,nbLike:HTMLInputElement){
 
@@ -60,5 +59,6 @@ export class TimelineComponent implements OnInit {
   onHover(like:HTMLInputElement){
     like.style.cursor='pointer';
   }
+
 
 }

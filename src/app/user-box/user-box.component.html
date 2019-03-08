@@ -1,0 +1,6 @@
+
+
+
+<div *ngIf="user.name"><span>Bienvenue,{{user.name | uppercase}}</span></div>
+<div *ngIf="!user.name"><span>Veuillez entrer votre nom</span></div>
+<input [(ngModel)]="user.name" required><p>{{user.name}}</p>

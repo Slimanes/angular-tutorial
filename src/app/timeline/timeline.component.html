@@ -18,6 +18,12 @@
 </div>
 -->
 
+<!--
+<div *ngIf="name"><span>Bienvenue,{{name | uppercase}}</span></div>
+<div *ngIf="!name"><span>Veuillez entrer votre nom</span></div>
+<input [(ngModel)]="name" required><p>{{name}}</p> -->
+
+<app-user-box [user]="user" ></app-user-box>
 
   <div *ngFor="let tweet of tweets">
 
@@ -39,5 +45,5 @@
   <br>
   <textarea #commentairesInput rows="4" cols="50"></textarea>
   <br>
-<button (click)="onSave(commentairesInput.value)" style="border-radius: 5px; background-color: #1b95e0; color:white;">Tweeter</button>
+<button [disabled]="!user.name" (click)="onSave(commentairesInput.value)" style="border-radius: 5px; background-color: #1b95e0; color:white;">Tweeter</button>
 </div>
